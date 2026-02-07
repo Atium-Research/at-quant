@@ -1,23 +1,23 @@
-# at-quant-tools
+# at-data-tools
 
 Atium Research backtesting and research tools package for quantitative finance data access.
 
 ## Overview
 
-`at-quant-tools` is a Python library that provides convenient access to quantitative finance datasets stored in a Bear Lake database. It offers functions to load historical market data, alphas, betas, factor models, and other quantitative signals, all returned as Polars DataFrames for efficient data analysis.
+`at-data-tools` is a Python library that provides convenient access to quantitative finance datasets stored in a Bear Lake database. It offers functions to load historical market data, alphas, betas, factor models, and other quantitative signals, all returned as Polars DataFrames for efficient data analysis.
 
 ## Installation
 
 Install the package using pip:
 
 ```bash
-pip install at-quant-tools
+pip install at-data-tools
 ```
 
 Or with uv:
 
 ```bash
-uv add at-quant-tools
+uv add at-data-tools
 ```
 
 ## Configuration
@@ -38,19 +38,19 @@ BUCKET=your_bucket_name
 
 ```python
 import datetime as dt
-import at_quant_tools as aqt
+import at_data_tools as adt
 
 # Load stock prices for a date range
 start = dt.date(2023, 1, 1)
 end = dt.date(2023, 12, 31)
-prices = aqt.load_stock_prices(start, end)
+prices = adt.load_stock_prices(start, end)
 
 # Load alphas for specific signals
 signals = ['reversal']
-alphas = aqt.load_alphas(start, end, signals)
+alphas = adt.load_alphas(start, end, signals)
 
 # View the schema of any table
-schema = aqt.get_stock_prices_schema()
+schema = adt.get_stock_prices_schema()
 print(schema)
 ```
 
