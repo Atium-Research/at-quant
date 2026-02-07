@@ -3,10 +3,30 @@ import numpy as np
 
 def build_covariance_matrix(
         tickers: pl.DataFrame,
-        factor_loadings: pl.DataFrame, 
-        factor_covariances: pl.DataFrame, 
+        factor_loadings: pl.DataFrame,
+        factor_covariances: pl.DataFrame,
         idio_vol: pl.DataFrame
     ) -> pl.DataFrame:
+    """Build a covariance matrix using factor model decomposition.
+
+    Constructs a covariance matrix from factor loadings, factor covariances, and
+    idiosyncratic volatilities using the formula: Cov = B @ F @ B^T + D^2, where
+    B is the factor loadings matrix, F is the factor covariance matrix, and D is
+    the diagonal matrix of idiosyncratic volatilities.
+
+    Args:
+        tickers: DataFrame containing the tickers to include in the covariance matrix.
+        factor_loadings: DataFrame with columns 'ticker', 'factor', and 'loading'
+            containing the factor exposures for each ticker.
+        factor_covariances: DataFrame with columns 'factor_1', 'factor_2', and 'covariance'
+            representing the covariance between factors.
+        idio_vol: DataFrame with columns 'ticker' and 'idio_vol' containing the
+            idiosyncratic volatility for each ticker.
+
+    Returns:
+        DataFrame containing the covariance matrix with tickers as both rows and columns.
+        The first column is 'ticker', followed by columns for each ticker in the input.
+    """
     factor_loadings_np = (
         factor_loadings
         .filter(pl.col('ticker').is_in(tickers))
