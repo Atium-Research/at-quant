@@ -3,7 +3,7 @@ import datetime as dt
 import bear_lake as bl
 import polars as pl
 
-from at_quant.clients import get_bear_lake_client
+from at_data_tools.clients import get_bear_lake_client
 
 
 def load_stock_prices(start: dt.date, end: dt.date) -> pl.DataFrame:
