@@ -1,0 +1,16 @@
+[project]
+name = "at-quant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bear-lake>=0.1.5",
+    "polars>=1.38.1",
+    "python-dotenv>=1.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "rich>=14.3.2",
+]
