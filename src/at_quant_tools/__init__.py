@@ -3,7 +3,6 @@ from at_quant.benchmark_returns import load_benchmark_returns, get_benchmark_ret
 from at_quant.benchmark_weights import load_benchmark_weights, get_benchmark_weights_schema
 from at_quant.betas import load_betas, get_betas_schema
 from at_quant.calendar import load_calendar, get_calendar_schema
-from at_quant.clients import get_bear_lake_client
 from at_quant.etf_prices import load_etf_prices, get_etf_prices_schema
 from at_quant.etf_returns import load_etf_returns, get_etf_returns_schema
 from at_quant.factor_covariances import load_factor_covariances, get_factor_covariances_schema
@@ -16,7 +15,6 @@ from at_quant.stock_returns import load_stock_returns, get_stock_returns_schema
 from at_quant.universe import load_universe, get_universe_schema
 
 __all__ = [
-    "get_bear_lake_client",
     "load_alphas",
     "load_benchmark_returns",
     "load_benchmark_weights",
