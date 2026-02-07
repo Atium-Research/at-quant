@@ -120,7 +120,7 @@ wheels = [
 
 [[package]]
 name = "at-data-tools"
-version = "0.1.4"
+version = "0.1.5"
 source = { virtual = "." }
 dependencies = [
     { name = "bear-lake" },

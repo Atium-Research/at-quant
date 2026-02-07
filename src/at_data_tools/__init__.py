@@ -13,7 +13,6 @@ from at_data_tools.data.signals import load_signals, get_signals_schema
 from at_data_tools.data.stock_prices import load_stock_prices, get_stock_prices_schema
 from at_data_tools.data.stock_returns import load_stock_returns, get_stock_returns_schema
 from at_data_tools.data.universe import load_universe, get_universe_schema
-from at_data_tools.covariance_matrix import build_covariance_matrix
 
 __all__ = [
     "load_alphas",
@@ -46,5 +45,4 @@ __all__ = [
     "get_stock_prices_schema",
     "get_stock_returns_schema",
     "get_universe_schema",
-    "build_covariance_matrix"
 ]
