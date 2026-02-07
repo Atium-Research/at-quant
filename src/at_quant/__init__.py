@@ -1,179 +1,35 @@
+from at_quant.alphas import load_alphas
+from at_quant.benchmark_returns import load_benchmark_returns
+from at_quant.benchmark_weights import load_benchmark_weights
+from at_quant.betas import load_betas
+from at_quant.calendar import load_calendar
 from at_quant.clients import get_bear_lake_client
-import polars as pl
-import bear_lake as bl
-import datetime as dt
+from at_quant.etf_prices import load_etf_prices
+from at_quant.etf_returns import load_etf_returns
+from at_quant.factor_covariances import load_factor_covariances
+from at_quant.factor_loadings import load_factor_loadings
+from at_quant.idio_vol import load_idio_vol
+from at_quant.scores import load_scores
+from at_quant.signals import load_signals
+from at_quant.stock_prices import load_stock_prices
+from at_quant.stock_returns import load_stock_returns
+from at_quant.universe import load_universe
 
-bear_lake_client = get_bear_lake_client()
-
-
-def load_alphas(start: dt.date, end: dt.date, signals: list[str]) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('alphas')
-            .filter(
-                pl.col('date').is_between(start, end),
-                pl.col('signal').is_in(signals)
-            )
-            .drop('year')
-            .sort('date', 'ticker', 'signal')
-        )
-    )
-
-
-def load_benchmark_returns(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('benchmark_returns')
-            .filter(pl.col('date').is_between(start, end))
-            .sort('date')
-        )
-    )
-
-
-def load_benchmark_weights(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('benchmark_weights')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_betas(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('betas')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_calendar(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('calendar')
-            .filter(pl.col('date').is_between(start, end))
-            .sort('date')
-        )
-    )
-
-
-def load_etf_prices(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('etf_prices')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_etf_returns(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('etf_returns')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_factor_covariances(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('factor_covariances')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'factor_1', 'factor_2')
-        )
-    )
-
-
-def load_factor_loadings(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('factor_loadings')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker', 'factor')
-        )
-    )
-
-
-def load_idio_vol(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('idio_vol')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_scores(start: dt.date, end: dt.date, signals: list[str]) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('scores')
-            .filter(
-                pl.col('date').is_between(start, end),
-                pl.col('signal').is_in(signals)
-            )
-            .drop('year')
-            .sort('date', 'ticker', 'signal')
-        )
-    )
-
-
-def load_signals(start: dt.date, end: dt.date, signals: list[str]) -> pl.DataFrame:
-    return (
-        bear_lake_client
-        .query(
-            bl.table('signals')
-            .filter(
-                pl.col('date').is_between(start, end),
-                pl.col('signal').is_in(signals)
-            )
-            .drop('year')
-            .sort('date', 'ticker', 'signal')
-        )
-    )
-
-
-def load_stock_prices(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('stock_prices')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_stock_returns(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('stock_returns')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
-
-
-def load_universe(start: dt.date, end: dt.date) -> pl.DataFrame:
-    return (
-        bear_lake_client.query(
-            bl.table('universe')
-            .filter(pl.col('date').is_between(start, end))
-            .drop('year')
-            .sort('date', 'ticker')
-        )
-    )
+__all__ = [
+    "get_bear_lake_client",
+    "load_alphas",
+    "load_benchmark_returns",
+    "load_benchmark_weights",
+    "load_betas",
+    "load_calendar",
+    "load_etf_prices",
+    "load_etf_returns",
+    "load_factor_covariances",
+    "load_factor_loadings",
+    "load_idio_vol",
+    "load_scores",
+    "load_signals",
+    "load_stock_prices",
+    "load_stock_returns",
+    "load_universe",
+]
