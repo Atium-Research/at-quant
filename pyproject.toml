@@ -1,11 +1,12 @@
 [project]
 name = "at-data-tools"
-version = "0.1.2"
+version = "0.1.3"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "bear-lake>=0.1.5",
+    "numpy>=2.4.2",
     "polars>=1.38.1",
     "python-dotenv>=1.2.1",
 ]
