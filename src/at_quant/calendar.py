@@ -14,3 +14,8 @@ def load_calendar(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date')
         )
     )
+
+def get_calendar_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('calendar')
+    )

@@ -15,3 +15,8 @@ def load_idio_vol(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date', 'ticker')
         )
     )
+
+def get_idio_vol_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('idio_vol')
+    )

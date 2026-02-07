@@ -18,3 +18,8 @@ def load_alphas(start: dt.date, end: dt.date, signals: list[str]) -> pl.DataFram
             .sort('date', 'ticker', 'signal')
         )
     )
+
+def get_alphas_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('alphas')
+    )

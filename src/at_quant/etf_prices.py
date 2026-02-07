@@ -15,3 +15,8 @@ def load_etf_prices(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date', 'ticker')
         )
     )
+
+def get_etf_prices_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('etf_prices')
+    )

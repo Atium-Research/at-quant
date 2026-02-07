@@ -15,3 +15,8 @@ def load_factor_loadings(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date', 'ticker', 'factor')
         )
     )
+
+def get_factor_loadings_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('factor_loadings')
+    )

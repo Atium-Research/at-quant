@@ -15,3 +15,8 @@ def load_factor_covariances(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date', 'factor_1', 'factor_2')
         )
     )
+
+def get_factor_covariances_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('factor_covariances')
+    )

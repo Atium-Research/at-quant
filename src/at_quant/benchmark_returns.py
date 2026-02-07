@@ -14,3 +14,8 @@ def load_benchmark_returns(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date')
         )
     )
+
+def get_benchmark_returns_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('benchmark_returns')
+    )

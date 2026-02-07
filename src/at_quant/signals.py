@@ -18,3 +18,8 @@ def load_signals(start: dt.date, end: dt.date, signals: list[str]) -> pl.DataFra
             .sort('date', 'ticker', 'signal')
         )
     )
+
+def get_signals_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('signals')
+    )

@@ -15,3 +15,8 @@ def load_benchmark_weights(start: dt.date, end: dt.date) -> pl.DataFrame:
             .sort('date', 'ticker')
         )
     )
+
+def get_benchmark_weights_schema() -> pl.Schema:
+    return (
+        get_bear_lake_client().get_schema('benchmark_weights')
+    )
